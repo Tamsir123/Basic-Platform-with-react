@@ -32,7 +32,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
-        <Footer />
+        <Footer Nom="DIOUF" Prenom="Tamsir Ababacar" />
       </body>
     </html>
   );

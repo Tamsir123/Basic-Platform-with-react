@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Logo from '@/public/LOGO.jpg'; // Adjust the path based on your folder structure
+import Logo from '@/assets/LOGO.jpg'; // Adjust the path based on your folder structure
 
 export default function Navbar() {
   return (
     <>
-      <div className="navbar bg-gradient-to-r from-green-50 to-white shadow-sm relative z-40">
+      <div className="navbar bg-gradient-to-r from-green-50 to-white shadow-md relative z-40 rounded-full  max-w-7xl mx-auto my-2 border-b border-green-200 border-opacity-100">
         <div className="flex-1">
           <Link href="/" className="btn btn-ghost flex items-center gap-2">
             <Image 
@@ -46,6 +46,7 @@ export default function Navbar() {
                   <img
                     alt="User Profile"
                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" 
+                    className="filter blur-sm hover:blur-none transition-all duration-300"
                   />
                 </div>
               </div>
