@@ -1,5 +1,7 @@
-export default function Entetepage(){
-    return(
+
+
+export default function Entetepage() {
+    return (
         <>
         <div className="relative overflow-hidden bg-gradient-to-b from-green-50 to-white">
         <div className="absolute inset-0 z-0">
@@ -41,7 +43,7 @@ export default function Entetepage(){
               </button>
             </div>
             
-            <div className="mt-12 flex justify-center space-x-6">
+            <div className="mt-12 flex justify-center space-x-6 items-center">
               <div className="flex items-center space-x-2">
                 <div className="flex -space-x-2">
                 {['bg-green-300', 'bg-green-500', 'bg-green-700'].map((color, i) => (
@@ -62,11 +64,11 @@ export default function Entetepage(){
                 </div>
                 <span className="text-sm text-gray-600 ml-2">4.9/5 satisfaction</span>
               </div>
+             
             </div>
           </div>
         </div>
       </div>
-      
         </>
     )
 }
