@@ -589,8 +589,7 @@ const FloatingParticles = () => {
     size: Math.random() * 8 + 4,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    duration: Math.random() * 20 + 10,
-    delay: Math.random() * 5,
+   
   }))
 
   return (
@@ -611,9 +610,7 @@ const FloatingParticles = () => {
             opacity: [0.05, 0.2, 0.05],
           }}
           transition={{
-            duration: particle.duration,
             repeat: Number.POSITIVE_INFINITY,
-            delay: particle.delay,
             ease: "easeInOut",
           }}
         />
