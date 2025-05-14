@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+<<<<<<< HEAD
 import Navbar from "@/library/Navbar/page";
 import Footer from "@/library/Footer/page";
+=======
+import ClientLayout from '../library/ClientLayout/page';
+>>>>>>> 5f1d45e (new)
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5f1d45e (new)
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -27,12 +35,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="light">
+<<<<<<< HEAD
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
         {children}
         <Footer Nom="DIOUF" Prenom="Tamsir Ababacar" />
+=======
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ClientLayout>{children}</ClientLayout>
+>>>>>>> 5f1d45e (new)
       </body>
     </html>
   );

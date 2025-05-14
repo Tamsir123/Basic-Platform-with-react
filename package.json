@@ -9,7 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@radix-ui/react-slot": "^1.1.2",
+=======
+    "@hookform/resolvers": "^5.0.1",
+    "@radix-ui/react-slot": "^1.1.2",
+    "axios": "^1.9.0",
+>>>>>>> 5f1d45e (new)
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.5.0",
@@ -18,11 +24,20 @@
     "next": "14.2.24",
     "react": "^18",
     "react-dom": "^18",
+<<<<<<< HEAD
+=======
+    "react-hook-form": "^7.56.3",
+>>>>>>> 5f1d45e (new)
     "react-icons": "^5.5.0",
     "recharts": "^2.15.1",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
+<<<<<<< HEAD
     "tw-elements-react": "^1.0.0-alpha-end"
+=======
+    "tw-elements-react": "^1.0.0-alpha-end",
+    "yup": "^1.6.1"
+>>>>>>> 5f1d45e (new)
   },
   "devDependencies": {
     "@types/node": "^20",
