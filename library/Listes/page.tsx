@@ -7,7 +7,7 @@ interface User {
     nom: string;
     prenom: string;
     email: string;
-    telephone: string;
+    telephone: number;
     fonction?: string; // Optional as it might not be present in the API response
     image?: string; // Optional as it might not be present in the API response
 }
@@ -170,14 +170,6 @@ export default function Listes() {
                         </div>
                     </div>
                 </div>
-                <div className="mt-4 flex justify-center">
-                    <a 
-                        href="/Connexion" 
-                        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
-                    >
-                        Se connecter
-                    </a>
-                </div>
             </div>
         );
     }
@@ -197,20 +189,6 @@ export default function Listes() {
                             <p className="text-sm text-red-700">{error}</p>
                         </div>
                     </div>
-                </div>
-                <div className="mt-4 flex justify-center space-x-4">
-                    <button 
-                        onClick={() => window.location.reload()}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                    >
-                        Réessayer
-                    </button>
-                    <a 
-                        href="/Connexion" 
-                        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
-                    >
-                        Se reconnecter
-                    </a>
                 </div>
             </div>
         );

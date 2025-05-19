@@ -1,10 +1,5 @@
 
-<<<<<<< HEAD
-=======
 import Link from "next/link";
-
->>>>>>> 5f1d45e (new)
-
 export default function Entetepage() {
     return (
         <>
@@ -34,15 +29,6 @@ export default function Entetepage() {
             </p>
             
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-<<<<<<< HEAD
-              <button className="btn btn-primary btn-lg shadow-lg shadow-green-200">
-                <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-                Commencer
-              </button>
-              <button className="btn btn-outline btn-lg border-green-600 text-green-700 hover:bg-green-50">
-=======
               <Link href="/Connexion">
                 <button className="btn btn-primary btn-lg shadow-lg shadow-green-200">
                   <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -50,9 +36,8 @@ export default function Entetepage() {
                   </svg>
                   Connexion
                 </button>
-                </Link>
-                <button className="btn btn-outline btn-lg border-green-600 text-green-700 hover:bg-green-50">
->>>>>>> 5f1d45e (new)
+              </Link>
+              <button className="btn btn-outline btn-lg border-green-600 text-green-700 hover:bg-green-50">
                 <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>

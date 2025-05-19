@@ -1,9 +1,9 @@
 'use client';
 
-
 import { usePathname } from 'next/navigation';
 import Navbar from '../Navbar/page';
 import Footer from '../Footer/page';
+import { ToastProvider } from '@/context/ToastContext';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -12,10 +12,10 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   const hideLayout = ['/Connexion', '/Inscription'].includes(pathname);
 
   return (
-    <>
-      {!hideLayout && < Navbar />}
+    <ToastProvider>
+      {!hideLayout && <Navbar />}
       {children}
-      {!hideLayout &&   <Footer Nom="DIOUF" Prenom="Tamsir Ababacar" />}
-    </>
+      {!hideLayout && <Footer Nom="DIOUF" Prenom="Tamsir Ababacar" />}
+    </ToastProvider>
   );
 }

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
-export default function HomePage() {
+export default function Connexion() {
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
   
@@ -17,11 +17,6 @@ export default function HomePage() {
       // console.log('Password:', Password);
 
   
-      const Donnees = {
-          email : Email,
-          password: Password,
-    
-      }
   
 
 
