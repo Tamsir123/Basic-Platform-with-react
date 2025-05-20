@@ -6,6 +6,7 @@ import Formation from "@/library/Formation/page";
 import Chart1 from "@/library/Charts/Chart1/page";
 import Chart2 from "@/library/Charts/Chart2/page";
 import { BoxRevealDemo } from "@/library/Box/page";
+// import { GlareCardDemo } from "@/library/Card/page";
 
 
 export default function Home() {
@@ -14,6 +15,8 @@ export default function Home() {
       <Entetepage/>
 
       <CounterSection/>
+
+      {/* <GlareCardDemo/> */}
 
       <div className="container grid grid-cols-2 gap-4 justify-center m-8">
       <Chart1/>

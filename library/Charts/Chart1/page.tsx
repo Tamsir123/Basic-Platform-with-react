@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { TrendingUp, BookOpen, GraduationCap } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, LabelList, XAxis, YAxis, ResponsiveContainer } from "recharts"
+import { Bar, BarChart, CartesianGrid, LabelList, XAxis, YAxis, ResponsiveContainer, Legend } from "recharts"
 
 import {
   Card,
