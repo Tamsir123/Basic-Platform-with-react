@@ -80,23 +80,13 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export default function DepartementsStatsChart() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  
-  // Calculer le total des étudiants (from outer circle for more detail)
+export default function DepartementsPieChart() {
+  // Calculer le total des étudiants
   const totalEtudiants = outerCircleData.reduce((total, item) => total + item.etudiants, 0);
   
   // Calculer le pourcentage par rapport à l'objectif
   const objectifEtudiants = 300;
   const pourcentageObjectif = Math.round((totalEtudiants / objectifEtudiants) * 100);
-
-  const handlePieEnter = (index: number) => {
-    setActiveIndex(index);
-  };
-
-  const handlePieLeave = () => {
-    setActiveIndex(null);
-  };
   
   return (
     <Card className="flex flex-col overflow-hidden shadow-lg border border-green-100 hover:shadow-xl transition-shadow duration-300">
@@ -105,7 +95,7 @@ export default function DepartementsStatsChart() {
           <School size={40} />
         </div>
         <CardTitle className="flex items-center text-xl font-bold">
-          <PieChartIcon className="mr-2 h-5 w-5" /> Répartition par Filière
+          <PieChartIcon className="mr-2 h-5 w-5" /> Répartition par Département
         </CardTitle>
         <CardDescription className="text-green-50">
           Année académique 2023-2024
@@ -115,138 +105,85 @@ export default function DepartementsStatsChart() {
         <div className="relative">
           <ChartContainer
             config={chartConfig}
-            className="mx-auto aspect-square max-h-[300px]"
+            className="mx-auto aspect-square max-h-[250px]"
           >
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <ChartTooltip
                   content={
                     <ChartTooltipContent 
-                      formatter={(value) => `${value} étudiants`}
+                      nameKey="etudiants" 
+                      hideLabel 
+                      formatter={(value:string) => `${value} étudiants`}
                     />
                   }
                 />
-                {/* Inner circle - Domaines */}
                 <Pie 
                   data={innerCircleData} 
                   dataKey="etudiants"
                   nameKey="departement"
                   cx="50%"
                   cy="50%"
-                  innerRadius={40}
-                  outerRadius={60}
+                  outerRadius={80}
+                  innerRadius={30}
                   paddingAngle={2}
-                  onMouseEnter={(_, index) => handlePieEnter(index)}
-                  onMouseLeave={handlePieLeave}
+                  animationDuration={1500}
                 >
                   {innerCircleData.map((entry, index) => (
-                    <Cell 
-                      key={`cell-inner-${index}`} 
-                      fill={entry.fill}
-                      opacity={activeIndex === null || activeIndex === index ? 1 : 0.6}
-                    />
+                    <Cell key={`cell-inner-${index}`} fill={entry.fill} />
                   ))}
                   <Label
-                    value="Domaines"
+                    dataKey="departement"
                     position="center"
-                    className="fill-gray-500 font-medium"
-                    fontSize={12}
+                    className="text-white font-bold"
+                    formatter={(value: keyof typeof chartConfig) => 
+                      chartConfig[value]?.label
+                    }
                   />
                 </Pie>
-                
-                {/* Outer circle - Départements */}
                 <Pie 
                   data={outerCircleData} 
                   dataKey="etudiants"
                   nameKey="departement"
                   cx="50%"
                   cy="50%"
-                  innerRadius={75}
-                  outerRadius={90}
+                  outerRadius={110}
+                  innerRadius={80}
                   paddingAngle={2}
-                  onMouseEnter={(_, index) => handlePieEnter(index + innerCircleData.length)}
-                  onMouseLeave={handlePieLeave}
+                  animationDuration={1500}
                 >
                   {outerCircleData.map((entry, index) => (
-                    <Cell 
-                      key={`cell-outer-${index}`} 
-                      fill={entry.fill}
-                      opacity={activeIndex === null || activeIndex === index + innerCircleData.length ? 1 : 0.6}
-                    />
+                    <Cell key={`cell-outer-${index}`} fill={entry.fill} />
                   ))}
+                  <Label
+                    dataKey="departement"
+                    position="outside"
+                    className="fill-gray-700"
+                    stroke="none"
+                    fontSize={11}
+                    fontWeight="500"
+                    formatter={(value: keyof typeof chartConfig) => 
+                      chartConfig[value]?.label
+                    }
+                  />
                 </Pie>
               </PieChart>
             </ResponsiveContainer>
           </ChartContainer>
         </div>
         
-        {/* Légende interactive */}
-        <div className="grid grid-cols-2 gap-8 mt-8 bg-white/50 rounded-xl p-6 shadow-sm">
-          {/* Domaines */}
-          <div className="border-r border-gray-100 pr-6">
-            <h4 className="text-sm font-semibold mb-4 text-gray-700 flex items-center">
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-              Domaines d'Études
-            </h4>
-            <div className="space-y-3">
-              {innerCircleData.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="flex items-center justify-between text-sm hover:bg-green-50/50 p-2 rounded-lg transition-all duration-200 cursor-pointer group"
-                  onMouseEnter={() => handlePieEnter(index)}
-                  onMouseLeave={handlePieLeave}
-                >
-                  <div className="flex items-center">
-                    <div 
-                      className="w-3 h-3 rounded-full mr-3 transition-all duration-200" 
-                      style={{ 
-                        backgroundColor: item.fill,
-                        transform: activeIndex === index ? 'scale(1.2)' : 'scale(1)',
-                        boxShadow: activeIndex === index ? `0 0 12px ${item.fill}` : 'none'
-                      }}
-                    />
-                    <span className="font-medium group-hover:text-green-700 transition-colors">{item.departement}</span>
-                  </div>
-                  <span className="ml-2 text-gray-600 font-semibold group-hover:text-green-600 transition-colors">
-                    {item.etudiants}
-                  </span>
-                </div>
-              ))}
+        {/* Légende */}
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2 mt-4">
+          {outerCircleData.map((item, index) => (
+            <div key={index} className="flex items-center text-sm">
+              <div 
+                className="w-3 h-3 rounded-full mr-2" 
+                style={{ backgroundColor: item.fill }}
+              />
+              <span className="font-medium">{item.departement}:</span>
+              <span className="ml-1 text-gray-600">{item.etudiants}</span>
             </div>
-          </div>
-
-          {/* Départements */}
-          <div className="pl-6">
-            <h4 className="text-sm font-semibold mb-4 text-gray-700 flex items-center">
-              <div className="w-2 h-2 bg-teal-500 rounded-full mr-2"></div>
-              Départements Spécialisés
-            </h4>
-            <div className="space-y-3">
-              {outerCircleData.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="flex items-center justify-between text-sm hover:bg-teal-50/50 p-2 rounded-lg transition-all duration-200 cursor-pointer group"
-                  onMouseEnter={() => handlePieEnter(index + innerCircleData.length)}
-                  onMouseLeave={handlePieLeave}
-                >
-                  <div className="flex items-center">
-                    <div 
-                      className="w-3 h-3 rounded-full mr-3 transition-all duration-200" 
-                      style={{ 
-                        backgroundColor: item.fill,
-                        transform: activeIndex === index + innerCircleData.length ? 'scale(1.2)' : 'scale(1)',
-                        boxShadow: activeIndex === index + innerCircleData.length ? `0 0 12px ${item.fill}` : 'none'
-                      }}
-                    />
-                    <span className="font-medium group-hover:text-teal-700 transition-colors">{item.departement}</span>
-                  </div>
-                  <span className="ml-2 text-gray-600 font-semibold group-hover:text-teal-600 transition-colors">
-                    {item.etudiants}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm p-6 bg-white border-t border-green-100">
@@ -263,7 +200,7 @@ export default function DepartementsStatsChart() {
         <div className="w-full mt-2">
           <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
             <div 
-              className="h-full bg-gradient-to-r from-green-400 to-teal-600 rounded-full transition-all duration-1000"
+              className="h-full bg-gradient-to-r from-green-400 to-teal-600 rounded-full"
               style={{ width: `${pourcentageObjectif}%` }}
             />
           </div>

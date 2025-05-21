@@ -181,68 +181,49 @@ export default function DepartementsStatsChart() {
         </div>
         
         {/* Légende interactive */}
-        <div className="grid grid-cols-2 gap-8 mt-8 bg-white/50 rounded-xl p-6 shadow-sm">
-          {/* Domaines */}
-          <div className="border-r border-gray-100 pr-6">
-            <h4 className="text-sm font-semibold mb-4 text-gray-700 flex items-center">
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-              Domaines d'Études
-            </h4>
-            <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-4 mt-6">
+          <div>
+            <h4 className="text-sm font-semibold mb-2 text-gray-600">Domaines</h4>
+            <div className="space-y-2">
               {innerCircleData.map((item, index) => (
                 <div 
                   key={index} 
-                  className="flex items-center justify-between text-sm hover:bg-green-50/50 p-2 rounded-lg transition-all duration-200 cursor-pointer group"
+                  className="flex items-center text-sm hover:bg-gray-50 p-1 rounded-lg transition-colors cursor-pointer"
                   onMouseEnter={() => handlePieEnter(index)}
                   onMouseLeave={handlePieLeave}
                 >
-                  <div className="flex items-center">
-                    <div 
-                      className="w-3 h-3 rounded-full mr-3 transition-all duration-200" 
-                      style={{ 
-                        backgroundColor: item.fill,
-                        transform: activeIndex === index ? 'scale(1.2)' : 'scale(1)',
-                        boxShadow: activeIndex === index ? `0 0 12px ${item.fill}` : 'none'
-                      }}
-                    />
-                    <span className="font-medium group-hover:text-green-700 transition-colors">{item.departement}</span>
-                  </div>
-                  <span className="ml-2 text-gray-600 font-semibold group-hover:text-green-600 transition-colors">
-                    {item.etudiants}
-                  </span>
+                  <div 
+                    className="w-3 h-3 rounded-full mr-2 transition-transform" 
+                    style={{ 
+                      backgroundColor: item.fill,
+                      transform: activeIndex === index ? 'scale(1.2)' : 'scale(1)'
+                    }}
+                  />
+                  <span className="font-medium">{item.departement}:</span>
+                  <span className="ml-1 text-gray-600">{item.etudiants}</span>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* Départements */}
-          <div className="pl-6">
-            <h4 className="text-sm font-semibold mb-4 text-gray-700 flex items-center">
-              <div className="w-2 h-2 bg-teal-500 rounded-full mr-2"></div>
-              Départements Spécialisés
-            </h4>
-            <div className="space-y-3">
+          <div>
+            <h4 className="text-sm font-semibold mb-2 text-gray-600">Départements</h4>
+            <div className="space-y-2">
               {outerCircleData.map((item, index) => (
                 <div 
                   key={index} 
-                  className="flex items-center justify-between text-sm hover:bg-teal-50/50 p-2 rounded-lg transition-all duration-200 cursor-pointer group"
+                  className="flex items-center text-sm hover:bg-gray-50 p-1 rounded-lg transition-colors cursor-pointer"
                   onMouseEnter={() => handlePieEnter(index + innerCircleData.length)}
                   onMouseLeave={handlePieLeave}
                 >
-                  <div className="flex items-center">
-                    <div 
-                      className="w-3 h-3 rounded-full mr-3 transition-all duration-200" 
-                      style={{ 
-                        backgroundColor: item.fill,
-                        transform: activeIndex === index + innerCircleData.length ? 'scale(1.2)' : 'scale(1)',
-                        boxShadow: activeIndex === index + innerCircleData.length ? `0 0 12px ${item.fill}` : 'none'
-                      }}
-                    />
-                    <span className="font-medium group-hover:text-teal-700 transition-colors">{item.departement}</span>
-                  </div>
-                  <span className="ml-2 text-gray-600 font-semibold group-hover:text-teal-600 transition-colors">
-                    {item.etudiants}
-                  </span>
+                  <div 
+                    className="w-3 h-3 rounded-full mr-2 transition-transform" 
+                    style={{ 
+                      backgroundColor: item.fill,
+                      transform: activeIndex === index + innerCircleData.length ? 'scale(1.2)' : 'scale(1)'
+                    }}
+                  />
+                  <span className="font-medium">{item.departement}:</span>
+                  <span className="ml-1 text-gray-600">{item.etudiants}</span>
                 </div>
               ))}
             </div>
